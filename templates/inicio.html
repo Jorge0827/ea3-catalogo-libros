@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block titulo %}Resumen del catálogo{% endblock %}
+{% block contenido %}
+<section class="aviso">
+  <p>Este tablero lee el CSV producido por el scraper de Books to Scrape. No son precios del mercado colombiano ni ventas observadas. La Evidencia 1 trabajó laptops de Mercado Libre; la Evidencia 2 automatizó la extracción de este catálogo de práctica; esta entrega publica el análisis en un servicio con integración y despliegue continuos.</p>
+</section>
+
+<section class="indicadores">
+  <article>
+    <p class="etiqueta">Libros</p>
+    <p class="valor">{{ resumen.libros }}</p>
+  </article>
+  <article>
+    <p class="etiqueta">Precio promedio</p>
+    <p class="valor">£{{ "%.2f"|format(resumen.precio_promedio) }}</p>
+  </article>
+  <article>
+    <p class="etiqueta">Mediana</p>
+    <p class="valor">£{{ "%.2f"|format(resumen.precio_mediana) }}</p>
+  </article>
+  <article>
+    <p class="etiqueta">Rango</p>
+    <p class="valor">£{{ "%.2f"|format(resumen.precio_minimo) }} – £{{ "%.2f"|format(resumen.precio_maximo) }}</p>
+  </article>
+  <article>
+    <p class="etiqueta">En existencia</p>
+    <p class="valor">{{ resumen.en_stock }}</p>
+  </article>
+  <article>
+    <p class="etiqueta">Precio y estrellas</p>
+    <p class="valor">{{ "%.2f"|format(resumen.correlacion_precio_calificacion) }}</p>
+  </article>
+</section>
+<p class="nota">La correlación se calcula entre el precio y la calificación. Un valor cercano a cero significa que, en este catálogo, pagar más no coincide con una mejor valoración.</p>
+
+<section class="paneles">
+  <article>
+    <h2>Calificación</h2>
+    <ul class="barras">
+      {% for fila in calificaciones %}
+      <li>
+        <span>{{ fila.calificacion }} ★</span>
+        <span class="pista"><span class="relleno" style="width: {{ (100 * fila.cantidad / max_calificacion)|round(1) }}%"></span></span>
+        <span class="cuenta">{{ fila.cantidad }} · {{ fila.porcentaje }}%</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </article>
+  <article>
+    <h2>Precio en libras</h2>
+    <ul class="barras">
+      {% for fila in precios %}
+      <li>
+        <span>{{ fila.etiqueta }}</span>
+        <span class="pista"><span class="relleno precio" style="width: {{ (100 * fila.cantidad / max_precio)|round(1) }}%"></span></span>
+        <span class="cuenta">{{ fila.cantidad }} · {{ fila.porcentaje }}%</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+
+<section class="listas">
+  <article>
+    <h2>Más costosos</h2>
+    <ol>
+      {% for libro in extremos.mas_costosos %}
+      <li>
+        <a href="{{ url_for('libro', indice=libro.indice) }}">{{ libro.Producto }}</a>
+        <strong>£{{ "%.2f"|format(libro.Precio_Numerico) }}</strong>
+      </li>
+      {% endfor %}
+    </ol>
+  </article>
+  <article>
+    <h2>Más económicos</h2>
+    <ol>
+      {% for libro in extremos.mas_economicos %}
+      <li>
+        <a href="{{ url_for('libro', indice=libro.indice) }}">{{ libro.Producto }}</a>
+        <strong>£{{ "%.2f"|format(libro.Precio_Numerico) }}</strong>
+      </li>
+      {% endfor %}
+    </ol>
+  </article>
+</section>
+{% endblock %}

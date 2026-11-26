@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Catálogo de libros{% endblock %} · Evidencia 3</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="marca">
+      <p class="institucion">IU Digital de Antioquia · Programación para Análisis de Datos</p>
+      <a class="titulo-sitio" href="{{ url_for('inicio') }}">Catálogo de libros</a>
+    </div>
+    <nav>
+      <a href="{{ url_for('inicio') }}">Resumen</a>
+      <a href="{{ url_for('catalogo_vista') }}">Catálogo</a>
+      <a href="{{ url_for('flujo') }}">Pipeline</a>
+    </nav>
+  </header>
+  <main>
+    {% block contenido %}{% endblock %}
+  </main>
+  <footer>
+    <p>Evidencia de aprendizaje 3. Jorge Andrés Echavarría Pardo. Los precios y las calificaciones provienen de Books to Scrape y son ficticios.</p>
+  </footer>
+</body>
+</html>

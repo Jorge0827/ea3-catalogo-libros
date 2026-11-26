@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titulo %}Pipeline{% endblock %}
+{% block contenido %}
+<article class="prosa">
+  <h1>Flujo de trabajo</h1>
+  <p>El servicio que estás viendo es el resultado del pipeline. El código vive en Git. Cada cambio propuesto se prueba antes de publicarse.</p>
+  <ol class="pasos">
+    <li>
+      <h2>Extracción</h2>
+      <p><code>scraper.py</code> pide el HTML de Books to Scrape con <code>requests</code>, lo interpreta con BeautifulSoup y guarda título, precio en libras, disponibilidad, calificación y enlace. Entre páginas espera un segundo. Si la página falla o el precio no es válido, la ejecución se detiene.</p>
+    </li>
+    <li>
+      <h2>Integración continua</h2>
+      <p>GitHub Actions ejecuta <code>pytest</code> en Ubuntu cuando hay un push o un pull request hacia <code>main</code>. Las pruebas usan HTML local: no visitan el sitio durante la validación.</p>
+    </li>
+    <li>
+      <h2>Entrega continua</h2>
+      <p>Render publica la rama <code>main</code> solo cuando el check de GitHub Actions queda en verde. Un pull request no se despliega.</p>
+    </li>
+    <li>
+      <h2>Servicio</h2>
+      <p>Render ejecuta <code>python iniciar.py</code>. Gunicorn escucha el puerto que asigna la plataforma y <code>/salud</code> confirma que el catálogo cargó.</p>
+    </li>
+  </ol>
+</article>
+{% endblock %}

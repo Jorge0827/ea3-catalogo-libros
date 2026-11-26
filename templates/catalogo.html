@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %}Catálogo{% endblock %}
+{% block contenido %}
+<section class="encabezado-pagina">
+  <h1>Catálogo</h1>
+  <p>{{ total }} de {{ total_catalogo }} libros{% if consulta %} para «{{ consulta }}»{% endif %}.</p>
+</section>
+<form class="busqueda" method="get" action="{{ url_for('catalogo_vista') }}">
+  <label for="q">Buscar por título</label>
+  <input id="q" name="q" value="{{ consulta }}" placeholder="Por ejemplo, light">
+  <button type="submit">Buscar</button>
+</form>
+<div class="tabla-contenedor">
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Precio</th>
+        <th>Calificación</th>
+        <th>Disponibilidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for fila in filas %}
+      <tr>
+        <td><a href="{{ url_for('libro', indice=fila.indice) }}">{{ fila.Producto }}</a></td>
+        <td>£{{ "%.2f"|format(fila.Precio_Numerico) }}</td>
+        <td>{{ fila.Calificacion }} / 5</td>
+        <td>{{ fila.Disponibilidad }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4">No hay títulos con ese texto.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<nav class="paginacion">
+  {% if pagina > 1 %}
+  <a href="{{ url_for('catalogo_vista', q=consulta, pagina=pagina-1) }}">Anterior</a>
+  {% endif %}
+  <span>Página {{ pagina }} de {{ paginas }}</span>
+  {% if pagina < paginas %}
+  <a href="{{ url_for('catalogo_vista', q=consulta, pagina=pagina+1) }}">Siguiente</a>
+  {% endif %}
+</nav>
+{% endblock %}

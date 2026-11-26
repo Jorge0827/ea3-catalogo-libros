@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ea3-catalogo-libros
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python iniciar.py
+    healthCheckPath: /salud
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"

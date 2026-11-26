@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}{{ libro.Producto }}{% endblock %}
+{% block contenido %}
+<article class="ficha">
+  <p class="etiqueta">Libro {{ indice + 1 }} del catálogo</p>
+  <h1>{{ libro.Producto }}</h1>
+  <dl>
+    <div>
+      <dt>Precio</dt>
+      <dd>£{{ "%.2f"|format(libro.Precio_Numerico) }} {{ libro.Moneda }}</dd>
+    </div>
+    <div>
+      <dt>Calificación</dt>
+      <dd>{{ libro.Calificacion }} de 5</dd>
+    </div>
+    <div>
+      <dt>Disponibilidad</dt>
+      <dd>{{ libro.Disponibilidad }}</dd>
+    </div>
+  </dl>
+  <p><a class="enlace-externo" href="{{ libro.Enlace }}">Ver la ficha en Books to Scrape</a></p>
+  <p><a href="{{ url_for('catalogo_vista') }}">Volver al catálogo</a></p>
+</article>
+{% endblock %}

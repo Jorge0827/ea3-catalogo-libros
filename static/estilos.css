@@ -1,0 +1,230 @@
+:root {
+  --papel: #f3efe4;
+  --tinta: #1b2420;
+  --verde: #0e5c49;
+  --verde-claro: #d7ebe3;
+  --linea: #d5cec0;
+  --blanco: #fffcf6;
+  --ocre: #a15c28;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--tinta);
+  background: var(--papel);
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+}
+
+a { color: var(--verde); }
+
+.cabecera, main, footer {
+  width: min(1080px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+  padding: 1.4rem 0 1rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+.institucion {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.titulo-sitio {
+  color: var(--tinta);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+
+nav { display: flex; gap: 1rem; }
+
+nav a { text-decoration: none; font-weight: 650; }
+
+main { padding: 1.4rem 0 2.5rem; }
+
+footer {
+  padding: 1rem 0 2rem;
+  color: #4d564f;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--linea);
+}
+
+.aviso, .ficha, .prosa, .tabla-contenedor, .busqueda {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+}
+
+.nota {
+  margin: 0 0 0.4rem;
+  color: #4d564f;
+  font-size: 0.92rem;
+}
+
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin: 1rem 0 0.4rem;
+}
+
+.indicadores article, .paneles article, .listas article {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.etiqueta {
+  margin: 0;
+  color: #5c675f;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.valor {
+  margin: 0.2rem 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+}
+
+.paneles, .listas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+h1, h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h2 { margin: 0 0 0.8rem; font-size: 1.25rem; }
+
+.barras { list-style: none; margin: 0; padding: 0; }
+
+.barras li {
+  display: grid;
+  grid-template-columns: 7.2rem 1fr auto;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.pista {
+  height: 0.7rem;
+  background: #efe8d8;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.relleno {
+  display: block;
+  height: 100%;
+  background: var(--verde);
+}
+
+.relleno.precio { background: var(--ocre); }
+
+.cuenta { font-variant-numeric: tabular-nums; font-size: 0.88rem; }
+
+.listas ol { margin: 0; padding-left: 1.2rem; }
+
+.listas li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.55rem;
+}
+
+.encabezado-pagina h1 { margin-bottom: 0.2rem; }
+
+.busqueda {
+  display: flex;
+  gap: 0.6rem;
+  align-items: end;
+  padding: 0.9rem;
+  margin: 0.8rem 0;
+}
+
+.busqueda label { display: none; }
+
+.busqueda input {
+  flex: 1;
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  background: var(--papel);
+}
+
+button, .enlace-externo {
+  background: var(--verde);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  font: inherit;
+  text-decoration: none;
+}
+
+.tabla-contenedor { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--linea);
+  vertical-align: top;
+}
+
+th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; }
+
+.paginacion {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.9rem;
+}
+
+.ficha, .prosa { padding: 1.2rem 1.3rem; }
+
+.ficha dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.ficha dt { color: #5c675f; font-size: 0.82rem; text-transform: uppercase; }
+.ficha dd { margin: 0.15rem 0 0; font-size: 1.15rem; }
+
+.pasos { padding-left: 1.2rem; }
+.pasos li { margin-bottom: 1rem; }
+code {
+  background: var(--verde-claro);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 800px) {
+  .cabecera, .indicadores, .paneles, .listas, .ficha dl { display: block; }
+  .indicadores article, .paneles article, .listas article { margin-bottom: 0.7rem; }
+  .barras li { grid-template-columns: 1fr; }
+  nav { margin-top: 0.7rem; }
+}
