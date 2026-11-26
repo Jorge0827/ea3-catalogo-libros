@@ -4,14 +4,34 @@ Aplicación web de la Evidencia de aprendizaje 3. Muestra el catálogo de
 [Books to Scrape](https://books.toscrape.com/), un sitio de práctica cuyos
 precios y calificaciones son ficticios.
 
+Autores, en el orden de las evidencias anteriores:
+
+- Juan Carlos Ardila Gómez
+- Edwin Alberto Ruiz Guzmán
+- Jorge Andrés Echavarría Pardo
+- Yeison Padrón Higuita
+
 El trabajo continúa la extracción de la Evidencia 2 y le agrega una interfaz,
 pruebas automáticas y despliegue continuo en Render. La Evidencia 1 había
 intentado extraer laptops de Mercado Libre; ese sitio dejó de entregar el
 listado y por eso el catálogo de esta entrega es el de práctica.
 
-El repositorio del equipo, usado en la Evidencia 2, queda como antecedente:
-https://github.com/jardilag/ProgramacionAnaliticaDatos. Esta entrega es individual
-y vive en su propio repositorio.
+El repositorio anterior del equipo queda como antecedente:
+https://github.com/jardilag/ProgramacionAnaliticaDatos. El informe en Word no
+forma parte de este repositorio.
+
+## Archivos
+
+- `scraper.py`: descarga y valida el catálogo.
+- `analisis.py`: resumen, distribuciones y correlación.
+- `app.py`: rutas de la aplicación.
+- `autores.py`: nombres que muestra el pie de página.
+- `iniciar.py`: arranque local y Gunicorn en Render.
+- `templates/` y `static/`: interfaz.
+- `test_*.py`: pruebas sin consultar el sitio.
+- `data/libros_books_to_scrape.csv`: catálogo que publica el servicio.
+- `.github/workflows/cicd.yml`: pruebas y despliegue.
+- `render.yaml`: definición del servicio.
 
 ## Ejecución local
 

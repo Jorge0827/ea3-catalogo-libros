@@ -8,6 +8,7 @@ import pandas as pd
 from flask import Flask, abort, render_template, request
 
 import analisis
+import autores
 
 POR_PAGINA = 20
 RAIZ = Path(__file__).resolve().parent
@@ -24,6 +25,10 @@ def crear_aplicacion(catalogo: pd.DataFrame | None = None) -> Flask:
                 RAIZ / analisis.ARCHIVO_CSV
             )
         return aplicacion.config["CATALOGO"]
+
+    @aplicacion.context_processor
+    def inyectar_autores():
+        return {"autores": autores.texto_autores()}
 
     @aplicacion.get("/salud")
     def salud():

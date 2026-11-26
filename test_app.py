@@ -70,6 +70,17 @@ def test_ficha_y_ruta_inexistente():
     assert navegador.get("/libro/9").status_code == 404
 
 
+def test_el_pie_nombra_al_equipo():
+    texto = cliente().get("/").get_data(as_text=True)
+    for nombre in (
+        "Juan Carlos Ardila Gómez",
+        "Edwin Alberto Ruiz Guzmán",
+        "Jorge Andrés Echavarría Pardo",
+        "Yeison Padrón Higuita",
+    ):
+        assert nombre in texto
+
+
 def test_flujo_describe_el_pipeline():
     texto = cliente().get("/flujo").get_data(as_text=True)
     assert "GitHub Actions" in texto
